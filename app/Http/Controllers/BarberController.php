@@ -54,7 +54,7 @@ class BarberController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return view('admin.barbers.show', compact('barber'));
     }
 
     /**
@@ -62,22 +62,39 @@ class BarberController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $users = User::where('role', 'barber')->get();
+        return view('admin.barbers.edit', compact('barber', 'users'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Barber $barber)
     {
-        //
+        $data = $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'name' => 'required|string|max:255',
+            'bio' => 'required|string',
+            'photo' => 'nullable|image|max:2048',
+            'experience_years' => 'nullable|integer',
+            'speciality' => 'nullable|string|max:255',
+            'available' => 'boolean',
+        ]);
+
+        if ($request->hasFile('photo')) {
+            $data['photo'] = $request->file('photo')->store('barbers', 'public');
+        }
+
+        $barber->update($data);
+        return redirect()->route('barbers.index')->with('success', 'Barber berhasil diupdate.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($barbe $barber)
     {
-        //
+        $barber->delete();
+        return redirect()->route('barbers.index')->with('success', 'Barber berhasil dihapus.');
     }
 }
