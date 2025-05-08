@@ -11,6 +11,9 @@ class Service extends Model
 
     public function bookings()
     {
-        return $this->belongsToMany(Bookings::class);
+        return $this->belongsToMany(Bookings::class)
+        ->using(BookingService::class)
+        ->withTimestamps()
+        ->withPivot('price_at_booking');
     }
 }

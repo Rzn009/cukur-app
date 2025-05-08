@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\BarberController;
 use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\Admin\DashboardAdminController;
+use App\Http\Controllers\Admin\ServiceController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -16,6 +17,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::middleware(['auth', 'is_admin'])->prefix('admin')->group(function () {
     Route::get('/', [DashboardAdminController::class, 'index'])->name('dashboard.admin');
     Route::resource('/barber', BarberController::class);
+    Route::resource('/services', ServiceController::class);
 });
 
 Route::middleware(['auth'])->group(function () {
