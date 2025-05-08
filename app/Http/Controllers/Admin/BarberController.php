@@ -1,34 +1,26 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Barber;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 class BarberController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $barber = Barber::with('user')->get;
-        return view("pages.admin.barber.index", compact("barber"));
+        $barbers = Barber::with('user')->get();
+        return view('pages.admin.barber.index', compact('barbers'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        $user = User::where('role', 'barber')->get();
-        return view('pages.admin.barber.create', compact('user'));
+        $users = User::where('role', 'barber')->get();
+        return view('pages.admin.barber.create', compact('users'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $data = $request->validate([
@@ -46,29 +38,20 @@ class BarberController extends Controller
         }
 
         Barber::create($data);
-        return redirect()->route('barbers.index')->with('success', 'Barber berhasil ditambahkan.');
+        return redirect()->route('barber.index')->with('success', 'Barber berhasil ditambahkan.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show(Barber $barber)
     {
-        return view('admin.barbers.show', compact('barber'));
+        return view('pages.admin.barber.show', compact('barber'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function edit(Barber $barber)
     {
         $users = User::where('role', 'barber')->get();
-        return view('admin.barbers.edit', compact('barber', 'users'));
+        return view('pages.admin.barber.edit', compact('barber', 'users'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Barber $barber)
     {
         $data = $request->validate([
@@ -86,15 +69,12 @@ class BarberController extends Controller
         }
 
         $barber->update($data);
-        return redirect()->route('barbers.index')->with('success', 'Barber berhasil diupdate.');
+        return redirect()->route('barber.index')->with('success', 'Barber berhasil diupdate.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($barbe $barber)
+    public function destroy(Barber $barber)
     {
         $barber->delete();
-        return redirect()->route('barbers.index')->with('success', 'Barber berhasil dihapus.');
+        return redirect()->route('barber.index')->with('success', 'Barber berhasil dihapus.');
     }
 }
