@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\BarberController;
 use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\Admin\DashboardAdminController;
+use App\Http\Controllers\Admin\ScheduleController;
 use App\Http\Controllers\Admin\ServiceController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,4 +23,6 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('/bookings', BookingController::class);
+    Route::resource('/schedule', ScheduleController::class);
+
 });
