@@ -18,7 +18,9 @@ class BarberSeeder extends Seeder
             'name' => 'Barber Satu',
             'email' => 'barber@gmail.com',
             'password' => Hash::make('password'),
-            'role' => 'barber'
+            'role' => 'barber',
+            "phone" => 0000 - 0000 - 0000,
+            "photo" => "default.png"
         ]);
     }
 }

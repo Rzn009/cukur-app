@@ -22,74 +22,72 @@
                     @endif
 
                     <div class="table-responsive">
-                        <table class="table table-hover">
+                        <table class="table table-hover align-middle">
                             <thead class="table-light">
                                 <tr>
-                                    <th>Barber</th>
-                                    <th>Hari</th>
-                                    <th>Jam Mulai</th>
-                                    <th>Jam Selesai</th>
-                                    <th class="text-center">Aksi</th>
+                                    <th class="px-3">Barber</th>
+                                    <th class="px-3">Hari</th>
+                                    <th class="px-3">Jam Mulai</th>
+                                    <th class="px-3">Jam Selesai</th>
+                                    <th class="px-3 text-center">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse($schedules as $schedule)
                                     <tr>
-                                        <td>
+                                        <td class="px-3">
                                             <div class="d-flex align-items-center">
-                                                @if($schedule->barber->photo)
-                                                    <img src="{{ asset('storage/' . $schedule->barber->photo) }}" 
-                                                         class="rounded-circle me-2" 
-                                                         width="32" height="32" 
-                                                         alt="{{ $schedule->barber->name }}">
+                                                @if ($schedule->barber->photo)
+                                                    <img src="{{ asset('storage/' . $schedule->barber->photo) }}"
+                                                        class="rounded-circle me-3" width="40" height="40"
+                                                        alt="{{ $schedule->barber->name }}">
                                                 @else
-                                                    <div class="rounded-circle bg-secondary me-2 d-flex align-items-center justify-content-center" 
-                                                         style="width: 32px; height: 32px;">
+                                                    <div class="rounded-circle bg-secondary me-3 d-flex align-items-center justify-content-center"
+                                                        style="width: 40px; height: 40px;">
                                                         <i class="fas fa-user text-white"></i>
                                                     </div>
                                                 @endif
-                                                <span>{{ $schedule->barber->name }}</span>
+                                                <span class="fw-medium">{{ $schedule->barber->name }}</span>
+                                            </div>
+                                        </td>
+                                        <td class="px-3">
+                                            <span class="badge bg-info px-3 py-2">{{ $schedule->day }}</span>
+                                        </td>
+                                        <td class="px-3">
+                                            <div class="d-flex align-items-center">
+                                                <i class="far fa-clock me-2 text-primary"></i>
+                                                <span>{{ \Carbon\Carbon::parse($schedule->start_time)->format('H:i') }}</span>
                                             </div>
                                         </td>
                                         <td>
-                                            <span class="badge bg-info">{{ $schedule->day }}</span>
+                                            <div class="d-flex align-items-center">
+                                                <i class="far fa-clock me-2 text-primary"></i>
+                                                <span>{{ \Carbon\Carbon::parse($schedule->end_time)->format('H:i') }}</span>
+                                            </div>
                                         </td>
-                                        <td>
-                                            <i class="far fa-clock me-1"></i>
-                                            {{ \Carbon\Carbon::parse($schedule->start_time)->format('H:i') }}
-                                        </td>
-                                        <td>
-                                            <i class="far fa-clock me-1"></i>
-                                            {{ \Carbon\Carbon::parse($schedule->end_time)->format('H:i') }}
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="btn-group" role="group">
-                                                <a href="{{ route('schedule.edit', $schedule) }}" 
-                                                   class="btn btn-warning btn-sm" 
-                                                   title="Edit">
-                                                    <i class="fas fa-edit"></i>
+                                        <td class="px-3">
+                                            <a href="{{ route('schedule.edit', $schedule) }}"
+                                                    class="btn btn-warning btn-sm px-3" title="Edit">
+                                                    edit
                                                 </a>
-                                                <form action="{{ route('schedule.destroy', $schedule) }}" 
-                                                      method="POST" 
-                                                      class="d-inline" 
-                                                      onsubmit="return confirm('Apakah Anda yakin ingin menghapus jadwal ini?')">
-                                                    @csrf 
+                                                <form action="{{ route('schedule.destroy', $schedule) }}" method="POST"
+                                                    class="d-inline"
+                                                    onsubmit="return confirm('Apakah Anda yakin ingin menghapus jadwal ini?')">
+                                                    @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" 
-                                                            class="btn btn-danger btn-sm" 
-                                                            title="Hapus">
-                                                        <i class="fas fa-trash"></i>
+                                                    <button type="submit" class="btn btn-danger btn-sm px-3"
+                                                        title="Hapus">
+                                                        hapus
                                                     </button>
                                                 </form>
-                                            </div>
                                         </td>
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="5" class="text-center py-4">
+                                        <td colspan="5" class="text-center py-5">
                                             <div class="text-muted">
-                                                <i class="fas fa-calendar-times fa-2x mb-3"></i>
-                                                <p class="mb-0">Belum ada jadwal yang diatur</p>
+                                                <i class="fas fa-calendar-times fa-3x mb-3"></i>
+                                                <p class="mb-0 fs-5">Belum ada jadwal yang diatur</p>
                                             </div>
                                         </td>
                                     </tr>

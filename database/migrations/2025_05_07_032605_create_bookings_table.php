@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('barber_id')->constrained()->onDelete('cascade');
             $table->date('booking_date');
             $table->time('booking_time');
-            $table->enum('status', ['pending','confirmed','completed','cancalled'])->default('pending');
+            $table->enum('status', ['pending','confirmed','completed','cancelled'])->default('pending');
             $table->text('note')->nullable();
             $table->timestamps();
         });

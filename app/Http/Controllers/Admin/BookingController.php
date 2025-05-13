@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Barber;
 use App\Models\Bookings;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
@@ -38,7 +39,12 @@ class BookingController extends Controller
             'note' => $request->note,
         ]);
 
-        return redirect()->route('bookings.index')->with('success', 'Booking berhasil dibuat!');
+        // Cek role user yang sedang login
+        if (auth()->user()->is_admin) {
+            return redirect()->route('bookings.index')->with('success', 'Booking berhasil dibuat!');
+        } else {
+            return redirect()->route('page.customer')->with('success', 'Booking berhasil dibuat!');
+        }
     }
 
     public function show(Bookings $booking)
@@ -55,22 +61,32 @@ class BookingController extends Controller
     public function update(Request $request, Bookings $booking)
     {
         $request->validate([
-            'barber_id' => 'required|exists:barbers,id',
-            'booking_date' => 'required|date',
-            'booking_time' => 'required',
-            'status' => 'required|in:pending,confirmed,completed,cancelled',
-            'note' => 'nullable|string',
+            'barber_id'     => 'required|exists:barbers,id',
+            'booking_date'  => 'required|date',
+            'booking_time'  => 'required',
+            'status'        => 'required|in:pending,confirmed,completed,cancelled',
+            'note'          => 'nullable|string',
         ]);
 
+        $oldStatus = $booking->status;
+
+        // Update data booking
         $booking->update($request->only('barber_id', 'booking_date', 'booking_time', 'status', 'note'));
 
-        return redirect()->route('bookings.index')->with('success', 'Booking berhasil diupdate!');
+        // Jika status diubah ke "confirmed", kirim notifikasi ke user
+        if ($oldStatus !== 'confirmed' && $booking->status === 'confirmed') {
+            $booking->user->notify(new \App\Notifications\BookingConfimedNotfification($booking));
+        }
+
+        // dd($booking->user->notifications);
+        return redirect()->route(route: 'bookings.index')->with('success', 'Booking berhasil diupdate!');
     }
+
+
 
     public function destroy(Bookings $booking)
     {
         $booking->delete();
         return redirect()->route('bookings.index')->with('success', 'Booking berhasil dihapus!');
     }
-
 }

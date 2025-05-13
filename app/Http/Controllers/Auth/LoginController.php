@@ -36,7 +36,7 @@ class LoginController extends Controller
             case 'barber':
                 return '/barber/dashboard';
             case 'customer':
-                return '/customer/dashboard';
+                return '/customer';
             default:
                 Auth::logout(); // logout jika role tidak valid
                 return '/login';
