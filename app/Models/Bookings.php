@@ -33,4 +33,8 @@ class Bookings extends Model
             ->withTimestamps()
             ->withPivot('price_at_booking');
     }
+    public function review()
+    {
+        return $this->hasOne(Riview::class, 'booking_id');
+    }
 }

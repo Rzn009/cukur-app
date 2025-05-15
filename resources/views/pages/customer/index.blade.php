@@ -609,6 +609,37 @@
                                                     <i class="fas fa-times me-1"></i>Batalkan
                                                 </button>
                                             </form>
+                                        @elseif ($booking->status === 'completed' && $booking->review === null)
+                                            <form action="{{ route('reviews.store') }}" method="POST"
+                                                class="mt-2">
+                                                @csrf
+                                                <input type="hidden" name="booking_id" value="{{ $booking->id }}">
+                                                <input type="hidden" name="barber_id"
+                                                    value="{{ $booking->barber->id }}">
+                                                <div class="mb-2">
+                                                    <label for="rating" class="form-label">Rating:</label>
+                                                    <select name="rating" class="form-select form-select-sm"
+                                                        required>
+                                                        <option value="">Pilih rating</option>
+                                                        @for ($i = 1; $i <= 5; $i++)
+                                                            <option value="{{ $i }}">{{ $i }}
+                                                                Bintang</option>
+                                                        @endfor
+                                                    </select>
+                                                </div>
+                                                <div class="mb-2">
+                                                    <label for="review" class="form-label">Ulasan:</label>
+                                                    <textarea name="review" rows="2" class="form-control form-control-sm" placeholder="Tulis ulasan..."></textarea>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary btn-sm">
+                                                    <i class="fas fa-paper-plane me-1"></i>Kirim
+                                                </button>
+                                            </form>
+                                        @elseif ($booking->review)
+                                            <div class="mt-2">
+                                                <strong>Rating: {{ $booking->review->rating }}/5</strong><br>
+                                                <small>"{{ $booking->review->review }}"</small>
+                                            </div>
                                         @endif
                                     </td>
                                 </tr>
@@ -627,6 +658,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 
     <!-- Booking Modal -->

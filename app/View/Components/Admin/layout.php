@@ -4,6 +4,7 @@ namespace App\View\Components\Admin;
 
 use Closure;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Component;
 
 class layout extends Component
@@ -21,6 +22,7 @@ class layout extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.admin.layout');
+        $admin = Auth::user();
+        return view('components.admin.layout', compact('admin'));
     }
 }

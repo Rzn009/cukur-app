@@ -88,5 +88,12 @@ class BookingController extends Controller
     {
         $booking->delete();
         return redirect()->route('bookings.index')->with('success', 'Booking berhasil dihapus!');
+
+        // Cek role user yang sedang login
+        if (auth()->user()->is_admin) {
+            return redirect()->route('bookings.index')->with('success', 'Booking berhasil dibuat!');
+        } else {
+            return redirect()->route('page.customer')->with('success', 'Booking berhasil dibuat!');
+        }
     }
 }

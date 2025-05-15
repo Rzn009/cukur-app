@@ -29,7 +29,7 @@ class BookingConfimedNotfification extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['database'];
+        return ['database','mail'];
     }
 
     /**
@@ -44,7 +44,7 @@ class BookingConfimedNotfification extends Notification
             ->line('Tanggal: ' . $this->booking->booking_date)
             ->line('Waktu: ' . $this->booking->booking_time)
             ->line('Barber: ' . $this->booking->barber->name)
-            ->action('Lihat Detail Booking', url('/bookings/' . $this->booking->id))
+            ->action('Lihat Detail Booking', url('/customer/bookings/' . $this->booking->id))
             ->line('Terima kasih telah menggunakan layanan kami!');
     }
 
