@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Traits\HasRoles;
 
 class LoginController extends Controller
 {
@@ -19,7 +20,7 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+    use AuthenticatesUsers, HasRoles;
 
     /**
      * Where to redirect users after login.
@@ -28,19 +29,10 @@ class LoginController extends Controller
      */
     protected function redirectTo()
     {
-        $role = Auth::user()->role;
+        $user = Auth::user();
 
-        switch ($role) {
-            case 'admin':
-                return '/admin';
-            case 'barber':
-                return '/barber/dashboard';
-            case 'customer':
-                return '/customer';
-            default:
-                Auth::logout(); // logout jika role tidak valid
-                return '/login';
-        }
+        // Super Admin dan user lain diarahkan ke dashboard yang sama
+        return '/admin';
     }
 
     /**

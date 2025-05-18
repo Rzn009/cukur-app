@@ -8,7 +8,7 @@
             @section('content title', 'Create Barber')
         </h2>
 
-        <form action="{{ route('barber.update', $barber) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.barbers.update', $barber) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -60,7 +60,7 @@
             </div>
 
             <button class="btn btn-warning">Update</button>
-            <a href="{{ route('barber.index') }}" class="btn btn-secondary">Kembali</a>
+            <a href="{{ route('admin.barbers.index') }}" class="btn btn-secondary">Kembali</a>
         </form>
     </div>
 @endsection

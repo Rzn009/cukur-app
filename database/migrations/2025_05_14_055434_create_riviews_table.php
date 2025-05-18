@@ -11,6 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // Hapus tabel jika sudah ada
+        Schema::dropIfExists('riviews');
+
         Schema::create('riviews', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');

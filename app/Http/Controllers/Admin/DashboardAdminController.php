@@ -11,6 +11,13 @@ use Illuminate\Support\Facades\Storage;
 
 class DashboardAdminController extends Controller
 {
+
+
+    public function __construct()
+    {
+        $this->middleware(['role:super_admin']);
+    }
+
     public function index()
     {
         $user = User::all();
@@ -18,7 +25,8 @@ class DashboardAdminController extends Controller
         return view("pages.admin.index", compact('user', 'userCount'));
     }
 
-        public function editProfileAdmin(){
+    public function editProfileAdmin()
+    {
         $admin = Auth::user();
         return view('pages.admin.editProfileAdmin', compact('admin'));
     }
@@ -41,14 +49,14 @@ class DashboardAdminController extends Controller
             $admin->password = Hash::make($request->password);
         }
 
-        
+
 
         if ($request->hasFile('photo')) {
             // Hapus foto lama jika ada
             if ($admin->photo) {
                 Storage::delete('public/admin/' . $admin->photo);
             }
-            
+
             // Upload foto baru
             $photoPath = $request->file('photo')->store('photos', 'public');
             $admin->photo = $photoPath;

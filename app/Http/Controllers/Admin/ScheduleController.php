@@ -12,6 +12,15 @@ class ScheduleController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function __construct()
+    {
+        $this->middleware('permission:schedule-list', ['only' => ['index', 'show']]);
+        $this->middleware('permission:schedule-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:schedule-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:schedule-delete', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         $schedules = Shcedule::with('barber')->latest()->get();

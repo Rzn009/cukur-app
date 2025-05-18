@@ -7,9 +7,11 @@
             <div class="card shadow-sm">
                 <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
                     <h2 class="mb-0 fs-4">@yield('content title', 'Daftar Jadwal')</h2>
-                    <a href="{{ route('schedule.create') }}" class="btn btn-light">
+                    @can('schedule-create')
+                    <a href="{{ route('admin.schedules.create') }}" class="btn btn-light">
                         <i class="fas fa-plus"></i> Atur Jadwal Baru
                     </a>
+                    @endcan
                 </div>
 
                 <div class="card-body">
@@ -66,11 +68,14 @@
                                             </div>
                                         </td>
                                         <td class="px-3">
-                                            <a href="{{ route('schedule.edit', $schedule) }}"
+                                            @can('schedule-edit')
+                                            <a href="{{ route('admin.schedules.edit', $schedule) }}"
                                                     class="btn btn-warning btn-sm px-3" title="Edit">
                                                     edit
                                                 </a>
-                                                <form action="{{ route('schedule.destroy', $schedule) }}" method="POST"
+                                            @endcan
+                                            @can('schedule-delete')
+                                                <form action="{{ route('admin.schedules.destroy', $schedule) }}" method="POST"
                                                     class="d-inline"
                                                     onsubmit="return confirm('Apakah Anda yakin ingin menghapus jadwal ini?')">
                                                     @csrf
@@ -80,6 +85,7 @@
                                                         hapus
                                                     </button>
                                                 </form>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @empty

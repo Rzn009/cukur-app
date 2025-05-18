@@ -9,6 +9,17 @@ use Illuminate\Http\Request;
 
 class BarberController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('permission:barber-list', ['only' => ['index', 'show']]);
+        $this->middleware('permission:barber-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:barber-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:barber-delete', ['only' => ['destroy']]);
+    }
+
+
+
     public function index()
     {
         $barbers = Barber::with('user')->get();

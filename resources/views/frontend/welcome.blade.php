@@ -8,7 +8,7 @@
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <!-- Site Metas -->
-    <link rel="icon" href="images/fevicon.png" type="image/gif" />
+    <link rel="icon" href="{{ asset('images/fevicon.png') }}" type="image/gif" />
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <meta name="author" content="" />
@@ -37,7 +37,7 @@
         <!-- header section strats -->
         <header class="header_section long_section px-0">
             <nav class="navbar navbar-expand-lg custom_nav-container ">
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="{{ url('/') }}">
                     <span>
                         Edgecut
                     </span>
@@ -52,24 +52,24 @@
                     <div class="d-flex mx-auto flex-column flex-lg-row align-items-center">
                         <ul class="navbar-nav  ">
                             <li class="nav-item active">
-                                <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="{{ url('/') }}">Home <span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="about.html"> About</a>
+                                <a class="nav-link" href="{{ url('/about') }}"> About</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="furniture.html">Furnitures</a>
+                                <a class="nav-link" href="{{ url('/furniture') }}">Furnitures</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="blog.html">Blog</a>
+                                <a class="nav-link" href="{{ url('/blog') }}">Blog</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="contact.html">Contact Us</a>
+                                <a class="nav-link" href="{{ url('/contact') }}">Contact Us</a>
                             </li>
                         </ul>
                     </div>
                     <div class="quote_btn-container">
-                        <a href="">
+                        <a href="{{ route('login') }}">
                             <span>
                                 Login
                             </span>
@@ -103,10 +103,10 @@
                                             maiores perspiciatis, illo maxime voluptatem a itaque suscipit.
                                         </p>
                                         <div class="btn-box">
-                                            <a href="" class="btn1">
+                                            <a href="{{ url('/contact') }}" class="btn1">
                                                 Contact Us
                                             </a>
-                                            <a href="" class="btn2">
+                                            <a href="{{ url('/about') }}" class="btn2">
                                                 About Us
                                             </a>
                                         </div>
@@ -114,7 +114,7 @@
                                 </div>
                                 <div class="col-md-7">
                                     <div class="img-box">
-                                        <img src="images/slider-img.png" alt="">
+                                        <img src="{{ asset('frontend/images/slider-img.png') }}" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -134,10 +134,10 @@
                                             maiores perspiciatis, illo maxime voluptatem a itaque suscipit.
                                         </p>
                                         <div class="btn-box">
-                                            <a href="" class="btn1">
+                                            <a href="{{ url('/contact') }}" class="btn1">
                                                 Contact Us
                                             </a>
-                                            <a href="" class="btn2">
+                                            <a href="{{ url('/about') }}" class="btn2">
                                                 About Us
                                             </a>
                                         </div>
@@ -145,7 +145,7 @@
                                 </div>
                                 <div class="col-md-7">
                                     <div class="img-box">
-                                        <img src="images/slider-img.png" alt="">
+                                        <img src="{{ asset('images/slider-img.png') }}" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -165,10 +165,10 @@
                                             maiores perspiciatis, illo maxime voluptatem a itaque suscipit.
                                         </p>
                                         <div class="btn-box">
-                                            <a href="" class="btn1">
+                                            <a href="{{ url('/contact') }}" class="btn1">
                                                 Contact Us
                                             </a>
-                                            <a href="" class="btn2">
+                                            <a href="{{ url('/about') }}" class="btn2">
                                                 About Us
                                             </a>
                                         </div>
@@ -176,7 +176,7 @@
                                 </div>
                                 <div class="col-md-7">
                                     <div class="img-box">
-                                        <img src="images/slider-img.png" alt="">
+                                        <img src="{{ asset('images/slider-img.png') }}" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -210,7 +210,7 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="box">
                         <div class="img-box">
-                            <img src="images/f1.png" alt="">
+                            <img src="{{ asset('images/f1.png') }}" alt="">
                         </div>
                         <div class="detail-box">
                             <h5>
@@ -230,7 +230,7 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="box">
                         <div class="img-box">
-                            <img src="images/f2.png" alt="">
+                            <img src="{{ asset('images/f2.png') }}" alt="">
                         </div>
                         <div class="detail-box">
                             <h5>
@@ -250,7 +250,7 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="box">
                         <div class="img-box">
-                            <img src="images/f3.png" alt="">
+                            <img src="{{ asset('images/f3.png') }}" alt="">
                         </div>
                         <div class="detail-box">
                             <h5>
@@ -270,7 +270,7 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="box">
                         <div class="img-box">
-                            <img src="images/f4.png" alt="">
+                            <img src="{{ asset('images/f4.png') }}" alt="">
                         </div>
                         <div class="detail-box">
                             <h5>
@@ -290,7 +290,7 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="box">
                         <div class="img-box">
-                            <img src="images/f5.png" alt="">
+                            <img src="{{ asset('images/f5.png') }}" alt="">
                         </div>
                         <div class="detail-box">
                             <h5>
@@ -310,7 +310,7 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="box">
                         <div class="img-box">
-                            <img src="images/f6.png" alt="">
+                            <img src="{{ asset('images/f6.png') }}" alt="">
                         </div>
                         <div class="detail-box">
                             <h5>
@@ -341,7 +341,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="img-box">
-                        <img src="images/about-img.png" alt="">
+                        <img src="{{ asset('images/about-img.png') }}" alt="">
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -356,7 +356,7 @@
                             ipsam repellat dolor soluta aliquid laborum, eius odit consectetur vel quasi in quidem,
                             eveniet ab est corporis tempore.
                         </p>
-                        <a href="">
+                        <a href="{{ url('/about') }}">
                             Read More
                         </a>
                     </div>
@@ -380,7 +380,7 @@
                 <div class="col-md-6 col-lg-4 mx-auto">
                     <div class="box">
                         <div class="img-box">
-                            <img src="images/b1.jpg" alt="">
+                            <img src="{{ asset('images/b1.jpg') }}" alt="">
                         </div>
                         <div class="detail-box">
                             <h5>
@@ -399,7 +399,7 @@
                 <div class="col-md-6 col-lg-4 mx-auto">
                     <div class="box">
                         <div class="img-box">
-                            <img src="images/b2.jpg" alt="">
+                            <img src="{{ asset('images/b2.jpg') }}" alt="">
                         </div>
                         <div class="detail-box">
                             <h5>
@@ -418,7 +418,7 @@
                 <div class="col-md-6 col-lg-4 mx-auto">
                     <div class="box">
                         <div class="img-box">
-                            <img src="images/b3.jpg" alt="">
+                            <img src="{{ asset('images/b3.jpg') }}" alt="">
                         </div>
                         <div class="detail-box">
                             <h5>
@@ -619,11 +619,11 @@
                                 QUICK LINKS
                             </h4>
                             <div class="info_links_menu">
-                                <a class="" href="index.html">Home <span class="sr-only">(current)</span></a>
-                                <a class="" href="about.html"> About</a>
-                                <a class="" href="furniture.html">Furniture</a>
-                                <a class="" href="blog.html">Blog</a>
-                                <a class="" href="contact.html">Contact Us</a>
+                                <a class="" href="{{ url('/') }}">Home <span class="sr-only">(current)</span></a>
+                                <a class="" href="{{ url('/about') }}"> About</a>
+                                <a class="" href="{{ url('/furniture') }}">Furniture</a>
+                                <a class="" href="{{ url('/blog') }}">Blog</a>
+                                <a class="" href="{{ url('/contact') }}">Contact Us</a>
                             </div>
                         </div>
                     </div>
@@ -634,22 +634,22 @@
                             </h5>
                             <div class="post_box">
                                 <div class="img-box">
-                                    <img src="images/f1.png" alt="">
+                                    <img src="{{ asset('images/f1.png') }}" alt="">
                                 </div>
                                 <div class="img-box">
-                                    <img src="images/f2.png" alt="">
+                                    <img src="{{ asset('images/f2.png') }}" alt="">
                                 </div>
                                 <div class="img-box">
-                                    <img src="images/f3.png" alt="">
+                                    <img src="{{ asset('images/f3.png') }}" alt="">
                                 </div>
                                 <div class="img-box">
-                                    <img src="images/f4.png" alt="">
+                                    <img src="{{ asset('images/f4.png') }}" alt="">
                                 </div>
                                 <div class="img-box">
-                                    <img src="images/f5.png" alt="">
+                                    <img src="{{ asset('images/f5.png') }}" alt="">
                                 </div>
                                 <div class="img-box">
-                                    <img src="images/f6.png" alt="">
+                                    <img src="{{ asset('images/f6.png') }}" alt="">
                                 </div>
                             </div>
                         </div>

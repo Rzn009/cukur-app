@@ -7,7 +7,7 @@
         <div class="container">
             <div class="container">
             <h2> @section('content title', 'Daftar Layanan')</h2>
-            <a href="{{ route('services.create') }}" class="btn btn-primary mb-3">Tambah Layanan</a>
+            <a href="{{ route('admin.services.create') }}" class="btn btn-primary mb-3">Tambah Layanan</a>
             @if (session('success'))
                 <div class="alert alert-success">{{ session('success') }}</div>
             @endif
@@ -22,8 +22,8 @@
                         <td>{{ $service->name }}</td>
                         <td>Rp{{ number_format($service->price) }}</td>
                         <td>
-                            <a href="{{ route('services.edit', $service) }}" class="btn btn-warning btn-sm">Edit</a>
-                            <form action="{{ route('services.destroy', $service) }}" method="POST"
+                            <a href="{{ route('admin.services.edit', $service) }}" class="btn btn-warning btn-sm">Edit</a>
+                            <form action="{{ route('admin.services.destroy', $service) }}" method="POST"
                                 style="display:inline;">
                                 @csrf @method('DELETE')
                                 <button type="submit" onclick="return confirm('Hapus layanan ini?')"
