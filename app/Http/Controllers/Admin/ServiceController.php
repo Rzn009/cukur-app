@@ -37,7 +37,7 @@ class ServiceController extends Controller
 
         Service::create($request->all());
 
-        return redirect()->route('services.index')->with('success', 'Service berhasil ditambahkan');
+        return redirect()->route('admin.services.index')->with('success', 'Service berhasil ditambahkan');
     }
 
     public function show(Service $service)
@@ -47,7 +47,7 @@ class ServiceController extends Controller
 
     public function edit(Service $service)
     {
-        return view('services.edit', compact('service'));
+        return view('pages.admin.services.edit', compact('service'));
     }
 
     public function update(Request $request, Service $service)
@@ -59,12 +59,12 @@ class ServiceController extends Controller
 
         $service->update($request->all());
 
-        return redirect()->route('services.index')->with('success', 'Service berhasil diupdate');
+        return redirect()->route('admin.services.index')->with('success', 'Service berhasil diupdate');
     }
 
     public function destroy(Service $service)
     {
         $service->delete();
-        return redirect()->route('services.index')->with('success', 'Service berhasil dihapus');
+        return redirect()->route('admin.services.index')->with('success', 'Service berhasil dihapus');
     }
 }

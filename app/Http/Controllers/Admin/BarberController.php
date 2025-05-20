@@ -28,7 +28,7 @@ class BarberController extends Controller
 
     public function create()
     {
-        $users = User::where('role', 'barber')->get();
+        $users = User::role('barber')->get();
         return view('pages.admin.barber.create', compact('users'));
     }
 
@@ -49,7 +49,7 @@ class BarberController extends Controller
         }
 
         Barber::create($data);
-        return redirect()->route('barber.index')->with('success', 'Barber berhasil ditambahkan.');
+        return redirect()->route('admin.barbers.index')->with('success', 'Barber berhasil ditambahkan.');
     }
 
     public function show(Barber $barber)
@@ -80,12 +80,12 @@ class BarberController extends Controller
         }
 
         $barber->update($data);
-        return redirect()->route('barber.index')->with('success', 'Barber berhasil diupdate.');
+        return redirect()->route('admin.barbers.index')->with('success', 'Barber berhasil diupdate.');
     }
 
     public function destroy(Barber $barber)
     {
         $barber->delete();
-        return redirect()->route('barber.index')->with('success', 'Barber berhasil dihapus.');
+        return redirect()->route('admin.barbers.index')->with('success', 'Barber berhasil dihapus.');
     }
 }

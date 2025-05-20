@@ -13,11 +13,7 @@ class DashboardAdminController extends Controller
 {
 
 
-    public function __construct()
-    {
-        $this->middleware(['role:super_admin']);
-    }
-
+    
     public function index()
     {
         $user = User::all();
@@ -63,6 +59,6 @@ class DashboardAdminController extends Controller
         }
         $admin->save();
 
-        return redirect()->route('dashboard.admin')->with('success', 'Profil berhasil diperbarui.');
+        return redirect()->route('admin.dashboard')->with('success', 'Profil berhasil diperbarui.');
     }
 }

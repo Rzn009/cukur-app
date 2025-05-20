@@ -130,7 +130,7 @@
                                 </div>
 
                                 <div class="d-flex justify-content-end gap-2">
-                                    <a href="{{ route('dashboard.admin') }}" class="btn btn-outline-secondary">
+                                    <a href="{{ route('admin.dashboard') }}" class="btn btn-outline-secondary">
                                         <i class="fas fa-arrow-left me-1"></i>Kembali
                                     </a>
                                     <button type="submit" class="btn btn-primary">

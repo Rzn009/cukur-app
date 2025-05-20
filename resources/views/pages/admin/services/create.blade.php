@@ -8,7 +8,7 @@
             @section('content title', 'Create Services')
         </h2>
 
-        <form action="{{ route('services.store') }}" method="POST">
+        <form action="{{ route('admin.services.store') }}" method="POST">
             @csrf
             <div class="form-group">
                 <label>Nama Layanan</label>

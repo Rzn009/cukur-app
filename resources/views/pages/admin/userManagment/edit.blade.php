@@ -68,7 +68,7 @@
                         </div>
 
                         <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-                        <a href="{{ route('admin.userManagment.index') }}" class="btn btn-secondary ms-2">Batal</a>
+                        <a href="{{ route('admin.users.index') }}" class="btn btn-secondary ms-2">Batal</a>
                     </form>
                 </div>
             </div>

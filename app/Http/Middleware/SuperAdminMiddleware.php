@@ -25,7 +25,7 @@ class SuperAdminMiddleware
 
         // Kalau bukan super admin, cek permission seperti biasa
         if (!$user->can($permission)) {
-            abort(403, 'Unauthorized');
+            abort(403, 'User does not have the right roles');
         }
 
         return $next($request);

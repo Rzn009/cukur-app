@@ -40,6 +40,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
     // Dashboard Admin
     Route::get('/', [DashboardAdminController::class, 'index'])->name('dashboard');
+    Route::get('/export/{module}', [App\Http\Controllers\Admin\ExportController::class, 'export'])->name('admin.export');
+
 
     // Profile
     Route::get('/profile', [DashboardAdminController::class, 'editProfileAdmin'])->name('profile.edit');

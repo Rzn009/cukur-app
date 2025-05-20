@@ -7,6 +7,9 @@
         <div class="container">
             <div class="container">
             <h2> @section('content title', 'Daftar Layanan')</h2>
+            @section('export-button')
+            @endsection
+
             <a href="{{ route('admin.services.create') }}" class="btn btn-primary mb-3">Tambah Layanan</a>
             @if (session('success'))
                 <div class="alert alert-success">{{ session('success') }}</div>

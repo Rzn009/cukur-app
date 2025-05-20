@@ -49,7 +49,7 @@ class ScheduleController extends Controller
         ]);
 
         Shcedule::create($request->all());
-        return redirect()->route('schedule.index')->with('success', 'Jadwal berhasil ditambahkan.');
+        return redirect()->route('admin.schedules.index')->with('success', 'Jadwal berhasil ditambahkan.');
     }
 
     /**
@@ -63,7 +63,7 @@ class ScheduleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Shcedule $schedule)
     {
         $barbers = Barber::all();
         return view('pages.admin.shcedule.edit', compact('schedule', 'barbers'));
@@ -76,13 +76,13 @@ class ScheduleController extends Controller
     {
         $request->validate([
             'barber_id' => 'required|exists:barbers,id',
-            'day' => 'required',
-            'start_time' => 'required',
-            'end_time' => 'required|after:start_time',
+            'day' => 'required|in:Senin,Selasa,Rabu,Kamis,Jumat,Sabtu,Minggu',
+            'start_time' => 'required|date_format:H:i',
+            'end_time' => 'required|date_format:H:i|after:start_time',
         ]);
 
         $schedule->update($request->all());
-        return redirect()->route('schedule.index')->with('success', 'Jadwal berhasil diupdate.');
+        return redirect()->route('admin.schedules.index')->with('success', 'Jadwal berhasil diperbarui.');
     }
 
     /**
@@ -91,6 +91,6 @@ class ScheduleController extends Controller
     public function destroy(Shcedule  $schedule)
     {
         $schedule->delete();
-        return redirect()->route('schedule.index')->with('success', 'Jadwal berhasil dihapus.');
+        return redirect()->route('admin.schedules.index')->with('success', 'Jadwal berhasil dihapus.');
     }
 }

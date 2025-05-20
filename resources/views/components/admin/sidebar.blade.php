@@ -26,40 +26,40 @@
     <div class="sidebar-heading">Interface</div>
 
     <!-- Category Menu -->
-    @if(auth()->user()->hasRole('super_admin') || auth()->user()->can('manage barbers') || auth()->user()->can('manage booking'))
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCategory"
-                aria-expanded="true" aria-controls="collapseCategory">
-                <i class="fas fa-fw fa-hand-scissors"></i>
-                <span>Category</span>
-            </a>
-            <div id="collapseCategory" class="collapse" aria-labelledby="headingCategory" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    @if(auth()->user()->hasRole('super_admin') || auth()->user()->can('manage barbers'))
-                        <a class="collapse-item" href="{{ route('admin.barbers.index') }}">Barber</a>
-                    @endif
-                    @if(auth()->user()->hasRole('super_admin') || auth()->user()->can('manage booking'))
-                        <a class="collapse-item" href="{{ route('bookings.index') }}">Bookings</a>
-                    @endif
-                </div>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCategory"
+            aria-expanded="true" aria-controls="collapseCategory">
+            <i class="fas fa-fw fa-hand-scissors"></i>
+            <span>Category</span>
+        </a>
+        <div id="collapseCategory" class="collapse" aria-labelledby="headingCategory" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                @can('manage barber')
+                    <a class="collapse-item" href="{{ route('admin.barbers.index') }}">Barber</a>
+                @endcan
+                <a class="collapse-item" href="{{ route('bookings.index') }}">Bookings</a>
+
             </div>
-        </li>
-    @endif
+        </div>
+    </li>
+
 
     <!-- User Management -->
-    @if(auth()->user()->hasRole('super_admin') || auth()->user()->can('manage user') || auth()->user()->can('manage roles'))
+    @if (auth()->user()->hasRole('super_admin') || auth()->user()->can('manage user') || auth()->user()->can('manage roles'))
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUserMgmt"
                 aria-expanded="true" aria-controls="collapseUserMgmt">
                 <i class="fas fa-fw fa-users-cog"></i>
                 <span>User Management</span>
             </a>
-            <div id="collapseUserMgmt" class="collapse" aria-labelledby="headingUserMgmt" data-parent="#accordionSidebar">
+            <div id="collapseUserMgmt" class="collapse" aria-labelledby="headingUserMgmt"
+                data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    @if(auth()->user()->hasRole('super_admin') || auth()->user()->can('manage user'))
+                    @if (auth()->user()->hasRole('super_admin') || auth()->user()->can('manage user'))
                         <a class="collapse-item" href="{{ route('admin.users.index') }}">User</a>
                     @endif
-                    @if(auth()->user()->hasRole('super_admin') || auth()->user()->can('manage role'))
+                    @if (auth()->user()->hasRole('super_admin') || auth()->user()->can('manage role'))
                         <a class="collapse-item" href="{{ route('admin.roles.index') }}">Role</a>
                     @endif
                 </div>
@@ -74,7 +74,7 @@
     <div class="sidebar-heading">Addons</div>
 
     <!-- Schedule -->
-    @if(auth()->user()->hasRole('super_admin') || auth()->user()->can('manage schedule'))
+    @if (auth()->user()->hasRole('super_admin') || auth()->user()->can('manage schedule'))
         <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.schedules.index') }}">
                 <i class="fas fa-fw fa-calendar-alt"></i>
@@ -84,7 +84,7 @@
     @endif
 
     <!-- Services -->
-    @if(auth()->user()->hasRole('super_admin') || auth()->user()->can('manage services'))
+    @if (auth()->user()->hasRole('super_admin') || auth()->user()->can('manage services'))
         <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.services.index') }}">
                 <i class="fas fa-fw fa-user"></i>
@@ -105,7 +105,7 @@
     <div class="sidebar-card d-none d-lg-flex">
         <img class="sidebar-card-illustration mb-2" src="{{ asset('backend/asset/img/undraw_rocket.svg') }}"
             alt="...">
-        <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Admin</a>
+        <a class="btn btn-success btn-sm" href="{{ route('admin.dashboard') }}">Admin</a>
     </div>
 
 </ul>

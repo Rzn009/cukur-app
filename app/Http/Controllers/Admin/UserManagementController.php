@@ -65,7 +65,7 @@ class UserManagementController extends Controller
             $user->syncPermissions($permissions);
         }
 
-        return redirect()->route('admin.userManagment.index')->with('success', 'User berhasil dibuat.');
+        return redirect()->route('admin.users.index')->with('success', 'User berhasil dibuat.');
     }
 
     public function edit(string $id)
@@ -98,12 +98,12 @@ class UserManagementController extends Controller
         // Update roles
         $user->syncRoles($request->roles ?? []);
 
-        return redirect()->route('admin.userManagment.index')->with('success', 'User berhasil diperbarui.');
+        return redirect()->route('admin.users.index')->with('success', 'User berhasil diperbarui.');
     }
 
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('admin.userManagment.index')->with('success', 'User berhasil dihapus.');
+        return redirect()->route('admin.users.index')->with('success', 'User berhasil dihapus.');
     }
 }

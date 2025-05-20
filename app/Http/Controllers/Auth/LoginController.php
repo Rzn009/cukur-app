@@ -31,7 +31,11 @@ class LoginController extends Controller
     {
         $user = Auth::user();
 
-        // Super Admin dan user lain diarahkan ke dashboard yang sama
+        if ($user->role === 'customer') {
+            return '/customer';
+        }
+
+        // Default redirect untuk role lainnya (misalnya super admin, admin, dll)
         return '/admin';
     }
 
